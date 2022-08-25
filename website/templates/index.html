@@ -20,13 +20,16 @@
 <div class="container mt-3">
     <form action="/" method="post">
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Note Title</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Drug Prescribed</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="Enter Note Title">
             </div>
         </div>
         <div class="form-group row">
-            <label for="note-desc" class="col-sm-2 col-form-label">Note Description</label>
+            <label for="note-desc" class="col-sm-2 col-form-label">Prescription</label>
+            <small id="prescriptionHelpBlock" class="form-text text-muted">
+                Remember To Include The Drug Name, Dose, Frequency and Length Of Prescription
+            </small>
             <div class="col-sm-10">
                 <textarea class="form-control" rows="4" name="note"></textarea>
             </div>
@@ -38,7 +41,7 @@
     <table class="table">
         {% if user.notes|length ==0  %}
         <div class="alert alert-danger" role="alert">
-            There is no note, ADD your first note now!!
+            There Is No Prescription Note, ADD Your First Prescription Note Now!!
         </div>
         {% else %}
 

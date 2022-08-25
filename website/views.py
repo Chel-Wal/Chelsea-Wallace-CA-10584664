@@ -15,13 +15,13 @@ def home():
         note = request.form.get('note')
 
         if len(note) < 1 :
-            flash('Note is too short, please write in detail !!!',category="error")
+            flash('Prescription Note Is Too Short, Please Write A Full Prescription!!!',category="error")
         else:
             new_note = Note(title=title,text=note,user_id=current_user.id)
 
             db.session.add(new_note)
             db.session.commit()
-            flash(' your note is added' ,category= 'success')
+            flash('Your Prescription Note Has Been Added' ,category= 'success')
 
     return render_template("index.html",user=current_user)
 
@@ -48,7 +48,7 @@ def deleteNote(id):
     if note:
         db.session.delete(note)
         db.session.commit()
-        flash("your note is successfully deleted", category="success")
+        flash("Your Prescption Note Has Been Deleted", category="success")
     return render_template("index.html",user=current_user)
 
 @views.route('/update/<int:id>',methods=['GET','POST'])
@@ -86,7 +86,7 @@ def deleteACC(id):
         db.session.delete(user)
         db.session.commit()
         logout_user()
-        flash("Account is successfully deleted",category="success")
+        flash("Account Has Successfully Been Deleted",category="success")
         return redirect(url_for("views.home"))
     return render_template("index.html",user=current_user)
 
@@ -103,11 +103,11 @@ def changePass(id):
             db.session.add(user)
             db.session.commit()
             logout_user()
-            flash("Password have changed successfully",category="success")
+            flash("Your Password Has Been Changed Successfully",category="success")
             return redirect(url_for("views.home"))
             
         else:
-            flash('Passwords does not match.' , category="error")
+            flash('Sorry Passwords Do Not Match' , category="error")
     return render_template("index.html",user=current_user)
             
 

@@ -38,6 +38,7 @@ def sign_up():
     if request.method == "POST":
         email = request.form['email']
         first_name = request.form['name']
+        last_name = request.form['last_name']
         password = request.form["password"]
         confirm_password = request.form["confirm-password"]
 
@@ -46,16 +47,18 @@ def sign_up():
             flash("User already exist",category="error")
         else:
             if len(email) < 4 :
-                flash('email must be greater tha 4 characters.' , category="error")
-            elif len(first_name) < 3:
-                flash('First_name must be greater tha 3 characters.' , category="error")
+                flash('email must be greater than 4 characters.' , category="error")
+            elif len(first_name) < 1:
+                flash('First_name must be greater than 1 characters.' , category="error")
+            elif len(last_name) < 1:
+                flash('First_name must be greater than 1 characters.' , category="error")
             elif password != confirm_password:
                 flash('Passwords does not match.' , category="error")
             elif len(password) < 7:
-                flash('Password Must be at 7 characters.' , category="error")
+                flash(' Your password must be at least 7 characters long, contain letters and numbers, and must not contain spaces, special characters, or emojis.' , category="error")
             else :
                 # add user to db
-                new_user = User(email=email,first_name=first_name,password=generate_password_hash(password,method="sha256"))
+                new_user = User(email=email,first_name=first_name,last_name=last_name,password=generate_password_hash(password,method="sha256"))
                 db.session.add(new_user)
                 db.session.commit()
                 # login_user(user, remember=True)
