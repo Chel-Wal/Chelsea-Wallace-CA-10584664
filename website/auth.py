@@ -23,7 +23,7 @@ def login():
             else:
                 flash("Incorrect Password,please try again.",category="error")
         else:
-            flash("User doesn\'t exist",category="error")
+            flash("Uh Oh User doesn\'t exist, Please Sign Up",category="error")
 
     return render_template("login.html",user=current_user)
 
@@ -44,7 +44,7 @@ def sign_up():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash("User already exist",category="error")
+            flash("Uh Oh ... User already exist",category="error")
         else:
             if len(email) < 4 :
                 flash('email must be greater than 4 characters.' , category="error")
@@ -53,7 +53,7 @@ def sign_up():
             elif len(last_name) < 1:
                 flash('Last Name must be greater than 1 characters.' , category="error")
             elif password != confirm_password:
-                flash('Passwords Do Not Match.' , category="error")
+                flash('Oh No Your Passwords Don\'t Appear To Match.' , category="error")
             elif len(password) < 7:
                 flash(' Your password must be at least 7 characters long, contain letters and numbers, and must not contain spaces or emojis.' , category="error")
             else :
