@@ -30,7 +30,7 @@
         <div class="form-group row">
             <label for="note-desc" class="col-sm-2 col-form-label">Prescription</label>
             <small id="prescriptionHelpBlock" class="form-text text-muted">
-                Remember To Include The Drug Name, Dose, Frequency and Length Of Prescription.
+                Remember To Include The Drug Name, Dose, Route, Frequency and Length Of Prescription.
             </small>
             <div class="col-sm-10">
                 <textarea class="form-control" rows="4" name="note"></textarea>
@@ -60,7 +60,7 @@
                 <td>{{note.title}}</td>
                 <td>{{note.text}}</td>
                 <td>
-                    <!-- <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success btn-sm mx-2"><a href="/update/{{note.id}}">update</a></button> -->
+                    
                     <a href="/update/{{note.id}}" type="button" class="btn btn-primary btn-sm mx-2">
                         Update
                     </a></button>
