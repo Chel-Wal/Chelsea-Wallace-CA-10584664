@@ -15,13 +15,13 @@ def home():
         note = request.form.get('note')
 
         if len(note) < 1 :
-            flash('Prescription Note Is Too Short, Please Write A Full Prescription!!!',category="error")
+            flash('Prescription Note Is Too Short, Please Write A Full Prescription!',category="error")
         else:
             new_note = Note(title=title,text=note,user_id=current_user.id)
 
             db.session.add(new_note)
             db.session.commit()
-            flash('Your Prescription Note Has Been Added' ,category= 'success')
+            flash('Congratulations Your Prescription Note Has Been Added' ,category= 'success')
 
     return render_template("index.html",user=current_user)
 
@@ -87,7 +87,7 @@ def deleteACC(id):
         db.session.delete(user)
         db.session.commit()
         logout_user()
-        flash("Account Has Successfully Been Deleted",category="success")
+        flash("Your Account Has Been Successfully Deleted",category="success")
         return redirect(url_for("views.home"))
     return render_template("index.html",user=current_user)
 
@@ -104,11 +104,11 @@ def changePass(id):
             db.session.add(user)
             db.session.commit()
             logout_user()
-            flash("Your Password Has Been Changed Successfully",category="success")
+            flash("Your Password Has Successfully Been Changed",category="success")
             return redirect(url_for("views.home"))
             
         else:
-            flash('Sorry Passwords Do Not Match' , category="error")
+            flash('Sorry Passwords Do Not Match, Try Again!' , category="error")
     return render_template("index.html",user=current_user)
             
 

@@ -14,6 +14,7 @@
 <table class="table">
     <thead class="table-dark">
         <tr>
+            <th scope="col">User Number</th>
             <th scope="col">Email</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
@@ -23,6 +24,7 @@
     <tbody>
         {% for usr,count in all_users %}
         <tr>
+            <th scope="row">{{usr.id}}</th>
             <td>{{usr.email}}</td>
             <td>{{usr.first_name}}</td>
             <td>{{usr.last_name}}</td>
