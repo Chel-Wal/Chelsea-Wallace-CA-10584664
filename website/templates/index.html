@@ -2,9 +2,11 @@
 
 
 {% block addlink %}
+{% if current_user.id == 5 %}
 <li class="nav-item">
     <a class="nav-link active" href="/all-users" id="allusers">Show All Users</a>
 </li>
+{% endif %}
 {% endblock addlink %}
 
 {% block deleteAcc %}
@@ -20,7 +22,7 @@
 <div class="container mt-3">
     <form action="/" method="post">
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Drug Prescribed</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label">Drug/s Prescribed</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="title" id="formGroupExampleInput" placeholder="Enter Note Title">
             </div>
@@ -28,7 +30,7 @@
         <div class="form-group row">
             <label for="note-desc" class="col-sm-2 col-form-label">Prescription</label>
             <small id="prescriptionHelpBlock" class="form-text text-muted">
-                Remember To Include The Drug Name, Dose, Frequency and Length Of Prescription
+                Remember To Include The Drug Name, Dose, Frequency and Length Of Prescription.
             </small>
             <div class="col-sm-10">
                 <textarea class="form-control" rows="4" name="note"></textarea>
@@ -59,9 +61,10 @@
                 <td>{{note.text}}</td>
                 <td>
                     <!-- <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success btn-sm mx-2"><a href="/update/{{note.id}}">update</a></button> -->
-                    <a href="/update/{{note.id}}" type="button" class="btn btn-success btn-sm mx-2">
-                        Update</abutton>
-                    <a href="/delete/{{note.id}}" type="button" class="btn btn-danger btn-sm mx-2">delete</abutton>
+                    <a href="/update/{{note.id}}" type="button" class="btn btn-primary btn-sm mx-2">
+                        Update
+                    </a></button>
+                    <a href="/delete/{{note.id}}" type="button" class="btn btn-danger btn-sm mx-2">delete</a></button>
                 </td>
             </tr>
             {% endfor %}

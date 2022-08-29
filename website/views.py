@@ -28,8 +28,10 @@ def home():
 @views.route("/all-users")
 @login_required
 def allUsers():
-    all_users=User.query.all()
-    var=[]
+    id = current_user.id
+    if id == 5:
+        all_users=User.query.all()
+        var=[]
     for user in all_users:
         notes=Note.query.filter_by(user_id=user.id).all()
         if len(notes)>0:
@@ -37,9 +39,8 @@ def allUsers():
         else:
             var.append(0)
     zipped=zip(all_users,var)
-
-
     return render_template("showusers.html",all_users=zipped,user=current_user)
+   
 
 @views.route('/delete/<int:id>',methods=['GET','POST'])
 @login_required
