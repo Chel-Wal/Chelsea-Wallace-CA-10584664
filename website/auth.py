@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,request,redirect,flash, url_for
+from flask import Blueprint,render_template,request,redirect,flash,url_for
 from .models import User ,Note
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -17,13 +17,13 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user :
             if check_password_hash(user.password,password):
-                flash('Logged in successfully',category="success")
+                flash('Logged In Successfully',category="success")
                 login_user(user, remember=True)
                 return redirect(url_for("views.home"))
             else:
-                flash("Incorrect Password,please try again.",category="error")
+                flash("Incorrect Password, Please Try Again.",category="error")
         else:
-            flash("Uh Oh User doesn\'t exist, Please Sign Up",category="error")
+            flash("Uh Oh User Doesn\'t Exist, Please Sign Up",category="error")
 
     return render_template("login.html",user=current_user)
 
@@ -44,24 +44,22 @@ def sign_up():
 
         user = User.query.filter_by(email=email).first()
         if user:
-            flash("Uh Oh ... User already exist",category="error")
+            flash("Uh Oh ... User Already Exist",category="error")
         else:
             if len(email) < 4 :
-                flash('email must be greater than 4 characters.' , category="error")
+                flash('Email must be greater than 4 characters.' , category="error")
             elif len(first_name) < 1:
-                flash('First Name must be greater than 1 characters.' , category="error")
+                flash('First Name must have at least 1 character.' , category="error")
             elif len(last_name) < 1:
-                flash('Last Name must be greater than 1 characters.' , category="error")
+                flash('Last Name must have at least 1 character.' , category="error")
             elif password != confirm_password:
                 flash('Oh No Your Passwords Don\'t Appear To Match.' , category="error")
             elif len(password) < 7:
                 flash(' Your password must be at least 7 characters long, contain letters and numbers, and must not contain spaces or emojis.' , category="error")
             else :
-                # adding a user to db
                 new_user = User(email=email,first_name=first_name,last_name=last_name,password=generate_password_hash(password,method="sha256"))
                 db.session.add(new_user)
                 db.session.commit()
-                # login_user(user, remember=True)
                 flash('Account Created Successfully',category='success')
                 return redirect(url_for("views.home"))
 
